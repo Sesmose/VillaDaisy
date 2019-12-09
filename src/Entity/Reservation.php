@@ -26,6 +26,20 @@ class Reservation
      */
     private $date_fin;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="reservation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $client;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Booking", mappedBy="Reservation", cascade={"persist", "remove"})
+     */
+    private $booking;
+
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,4 +68,36 @@ class Reservation
 
         return $this;
     }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(?Booking $booking): self
+    {
+        $this->booking = $booking;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newReservation = null === $booking ? null : $this;
+        if ($booking->getReservation() !== $newReservation) {
+            $booking->setReservation($newReservation);
+        }
+
+        return $this;
+    }
+
+    
 }

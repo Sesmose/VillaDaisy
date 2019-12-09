@@ -31,6 +31,12 @@ class Booking
      */
     private $title;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Reservation", inversedBy="booking", cascade={"persist", "remove"})
+     */
+    private $Reservation;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,4 +77,17 @@ class Booking
 
         return $this;
     }
+
+    public function getReservation(): ?Reservation
+    {
+        return $this->Reservation;
+    }
+
+    public function setReservation(?Reservation $Reservation): self
+    {
+        $this->Reservation = $Reservation;
+
+        return $this;
+    }
+
 }
