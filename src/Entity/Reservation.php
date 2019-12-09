@@ -30,90 +30,60 @@ class Reservation {
 	 */
 	private $booking;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="Reservation")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $client;
-<<<<<<< Updated upstream
-
-
-
-
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getDateDebut(): ?\DateTimeInterface
-    {
-        return $this->date_debut;
-    }
-
-    public function setDateDebut(\DateTimeInterface $date_debut): self
-    {
-        $this->date_debut = $date_debut;
-
-        return $this;
-    }
-=======
->>>>>>> Stashed changes
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="Reservation")
+	 * @ORM\JoinColumn(nullable=false)
+	 */
+	private $client;
 
 	public function getId():  ? int {
-         		return $this->id;
-         	}
+		return $this->id;
+	}
 
 	public function getDateDebut() :  ? \DateTimeInterface {
-         		return $this->date_debut;
-         	}
+		return $this->date_debut;
+	}
 
 	public function setDateDebut(\DateTimeInterface $date_debut) : self{
-         		$this->date_debut = $date_debut;
-         
-         		return $this;
-         	}
+		$this->date_debut = $date_debut;
+
+		return $this;
+	}
 
 	public function getDateFin():  ? \DateTimeInterface {
-         		return $this->date_fin;
-         	}
+		return $this->date_fin;
+	}
 
 	public function setDateFin(\DateTimeInterface $date_fin) : self{
-         		$this->date_fin = $date_fin;
-         
-         		return $this;
-         	}
+		$this->date_fin = $date_fin;
+
+		return $this;
+	}
 
 	public function getBooking():  ? Booking {
-         		return $this->booking;
-         	}
+		return $this->booking;
+	}
 
 	public function setBooking( ? Booking $booking) : self{
-         		$this->booking = $booking;
-         
-         		// set (or unset) the owning side of the relation if necessary
-         		$newReservation = null === $booking ? null : $this;
-         		if ($booking->getReservation() !== $newReservation) {
-         			$booking->setReservation($newReservation);
-         		}
-         
-         		return $this;
-         	}
+		$this->booking = $booking;
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
+		// set (or unset) the owning side of the relation if necessary
+		$newReservation = null === $booking ? null : $this;
+		if ($booking->getReservation() !== $newReservation) {
+			$booking->setReservation($newReservation);
+		}
 
-    public function setClient(?Client $client): self
-    {
-        $this->client = $client;
+		return $this;
+	}
 
-        return $this;
-    }
+	public function getClient() :  ? Client {
+		return $this->client;
+	}
 
-<<<<<<< Updated upstream
+	public function setClient( ? Client $client) : self{
+		$this->client = $client;
 
-=======
->>>>>>> Stashed changes
+		return $this;
+	}
+
 }
