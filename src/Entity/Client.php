@@ -188,5 +188,6 @@ class Client
 
         return $this;
     }
+    
 
 }
