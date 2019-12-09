@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,73 +21,60 @@ class Admin
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $prenom;
+    private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $mdp;
+    private $password;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $role;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getUsername(): ?string
     {
-        return $this->nom;
+        return $this->username;
     }
 
-    public function setNom(string $nom): self
+    public function setUsername(string $username): self
     {
-        $this->nom = $nom;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getEmail(): ?string
     {
-        return $this->prenom;
+        return $this->email;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setEmail(string $email): self
     {
-        $this->prenom = $prenom;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getMdp(): ?string
+    public function getPassword(): ?string
     {
-        return $this->mdp;
+        return $this->password;
     }
 
-    public function setMdp(string $mdp): self
+    public function setPassword(string $password): self
     {
-        $this->mdp = $mdp;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
 
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
 
-        return $this;
-    }
 }

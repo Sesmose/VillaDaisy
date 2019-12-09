@@ -43,6 +43,21 @@ class Client
      */
     private $reservation;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $cp;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ville;
+
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
@@ -128,6 +143,42 @@ class Client
                 $reservation->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCp(): ?int
+    {
+        return $this->cp;
+    }
+
+    public function setCp(int $cp): self
+    {
+        $this->cp = $cp;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191209111811 extends AbstractMigration
+final class Version20191209130834 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,10 +22,7 @@ final class Version20191209111811 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE booking CHANGE end_at end_at DATETIME DEFAULT NULL');
-        $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C849553301C60');
-        $this->addSql('DROP INDEX UNIQ_42C849553301C60 ON reservation');
-        $this->addSql('ALTER TABLE reservation DROP booking_id');
+        $this->addSql('ALTER TABLE booking DROP admin_id, CHANGE reservation_id reservation_id INT DEFAULT NULL, CHANGE end_at end_at DATETIME DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -33,9 +30,6 @@ final class Version20191209111811 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE booking CHANGE end_at end_at DATETIME DEFAULT \'NULL\'');
-        $this->addSql('ALTER TABLE reservation ADD booking_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C849553301C60 FOREIGN KEY (booking_id) REFERENCES booking (id)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_42C849553301C60 ON reservation (booking_id)');
+        $this->addSql('ALTER TABLE booking ADD admin_id INT DEFAULT NULL, CHANGE reservation_id reservation_id INT DEFAULT NULL, CHANGE end_at end_at DATETIME DEFAULT \'NULL\'');
     }
 }
