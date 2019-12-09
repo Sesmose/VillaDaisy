@@ -22,7 +22,7 @@ class BookingController extends AbstractController
      */
     public function index(BookingRepository $bookingRepository): Response
     {
-        return $this->render('booking/index.html.twig', [
+        return $this->render('booking/calendar.html.twig', [
             'bookings' => $bookingRepository->findAll(),
         ]);
     }
@@ -54,6 +54,8 @@ class BookingController extends AbstractController
 
     /**
      * @Route("/{id}", name="booking_show", methods={"GET"})
+     * @param Booking $booking
+     * @return Response
      */
     public function show(Booking $booking): Response
     {
