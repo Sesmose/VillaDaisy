@@ -37,7 +37,8 @@ class Reservation
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;
-    
+
+
 
 
 
@@ -101,5 +102,5 @@ class Reservation
         return $this;
     }
 
-    
+
 }
