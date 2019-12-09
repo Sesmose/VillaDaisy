@@ -26,17 +26,18 @@ class Reservation
      */
     private $date_fin;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="reservation")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $client;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Booking", mappedBy="Reservation", cascade={"persist", "remove"})
      */
     private $booking;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="Reservation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $client;
+    
 
 
 
@@ -69,17 +70,6 @@ class Reservation
         return $this;
     }
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
-
-    public function setClient(?Client $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
 
     public function getBooking(): ?Booking
     {
@@ -95,6 +85,18 @@ class Reservation
         if ($booking->getReservation() !== $newReservation) {
             $booking->setReservation($newReservation);
         }
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }

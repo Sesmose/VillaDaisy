@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -38,10 +39,7 @@ class Client
      */
     private $telephone;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\reservation", mappedBy="client", orphanRemoval=true)
-     */
-    private $reservation;
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -58,10 +56,16 @@ class Client
      */
     private $ville;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="client", orphanRemoval=true)
+     */
+    private $Reservation;
+
     public function __construct()
     {
-        $this->reservation = new ArrayCollection();
+        $this->Reservation = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -116,36 +120,7 @@ class Client
         return $this;
     }
 
-    /**
-     * @return Collection|reservation[]
-     */
-    public function getReservation(): Collection
-    {
-        return $this->reservation;
-    }
 
-    public function addReservation(reservation $reservation): self
-    {
-        if (!$this->reservation->contains($reservation)) {
-            $this->reservation[] = $reservation;
-            $reservation->setClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReservation(reservation $reservation): self
-    {
-        if ($this->reservation->contains($reservation)) {
-            $this->reservation->removeElement($reservation);
-            // set the owning side to null (unless already changed)
-            if ($reservation->getClient() === $this) {
-                $reservation->setClient(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getAdresse(): ?string
     {
@@ -182,4 +157,36 @@ class Client
 
         return $this;
     }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservation(): Collection
+    {
+        return $this->Reservation;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->Reservation->contains($reservation)) {
+            $this->Reservation[] = $reservation;
+            $reservation->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->Reservation->contains($reservation)) {
+            $this->Reservation->removeElement($reservation);
+            // set the owning side to null (unless already changed)
+            if ($reservation->getClient() === $this) {
+                $reservation->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
