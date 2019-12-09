@@ -1,0 +1,68 @@
+
+Deprecated: The each() function is deprecated. This message will be suppressed on further calls in C:\Users\willy\AppData\Roaming\Sublime Text 3\Packages\PHPTools\php.tools\codeFormatter.php on line 54
+<?php
+
+namespace App\Entity;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\AdminRepository")
+ */
+
+class Admin {
+	/**
+	 * @ORM\Id()
+	 * @ORM\GeneratedValue()
+	 * @ORM\Column(type="integer")
+	 */
+	private $id;
+
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $username;
+
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $email;
+
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $password;
+
+	public function getId():?int {
+		return $this->id;
+	}
+
+	public function getUsername():?string {
+		return $this->username;
+	}
+
+	public function setUsername(string $username):self {
+		$this->username = $username;
+
+		return $this;
+	}
+
+	public function getEmail():?string {
+		return $this->email;
+	}
+
+	public function setEmail(string $email):self {
+		$this->email = $email;
+
+		return $this;
+	}
+
+	public function getPassword():?string {
+		return $this->password;
+	}
+
+	public function setPassword(string $password):self {
+		$this->password = $password;
+
+		return $this;
+	}
+
+}
